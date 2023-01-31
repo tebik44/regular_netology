@@ -23,6 +23,8 @@ def main(file1):
 
 def union(contacts: list):
     """функция обработки списка от одинаковых и пустых записях"""
+    #------------------------------------------------------------------
+    #КАК МОЖНО СДЕЛАТЬ ПОКОРОЧЕ, МОЖЕТ МОЖНО ИСПОЛЬЗОВАТЬ БИБЛИОТЕКУ PANDAS?
     for contact in contacts:
         first_name = contact[0]
         last_name = contact[1]
@@ -35,7 +37,7 @@ def union(contacts: list):
                 if contact[4] == "": contact[4] = new_contact[4]
                 if contact[5] == "": contact[5] = new_contact[5]
                 if contact[6] == "": contact[6] = new_contact[6]
-
+    #-------------------------------------------------------------------
     result_list = list()
     for i in contacts:
         if i not in result_list:
