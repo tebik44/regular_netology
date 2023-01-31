@@ -1,6 +1,7 @@
 import csv
 from pprint import pprint
 import re
+from pandas import pandas as pd
 
 def main(file1):
     """функция для чтения данных и группировки их"""
@@ -43,8 +44,16 @@ def union(contacts: list):
         if i not in result_list:
             result_list.append(i)
 
-    pprint(result_list, width=300)
+    # pprint(result_list, width=300)
     return result_list
 
 if __name__ == '__main__':
-    union(main('test_data_file.cvs'))
+    lst = main('test_data_file.cvs')
+    union(lst)
+    with open("phonebook.csv", "w", newline='', encoding='utf-8') as f:
+        datawriter = csv.writer(f, delimiter=',')
+        datawriter.writerows(lst)
+    df = pd.read_csv("phonebook.csv")
+    df.drop_duplicates(subset=None, inplace=True)
+    pd.options.display.max_columns = 10
+    print(df)
