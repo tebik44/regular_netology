@@ -2,6 +2,8 @@ import csv
 from pprint import pprint
 import re
 from pandas import pandas as pd
+import itertools
+
 
 def main(file1):
     """функция для чтения данных и группировки их"""
@@ -48,11 +50,10 @@ def union(contacts: list):
     return result_list
 
 if __name__ == '__main__':
-    lst = main('test_data_file.cvs')
-    union(lst)
+    result_list = union(main('test_data_file.cvs'))
     with open("phonebook.csv", "w", newline='', encoding='utf-8') as f:
         datawriter = csv.writer(f, delimiter=',')
-        datawriter.writerows(lst)
+        datawriter.writerows(result_list)
     df = pd.read_csv("phonebook.csv")
     df.drop_duplicates(subset=None, inplace=True)
     pd.options.display.max_columns = 10
